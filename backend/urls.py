@@ -17,8 +17,12 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from base.urls import router
+from base.views import *
 
 urlpatterns = [
-    path('', include(router.urls)),
+    path('api/v1/', include(router.urls)),
     path('admin/', admin.site.urls),
+    path('api/v1/user/', CustomUserAPIList.as_view()),
+    path('api/v1/user/<int:pk>/', CustomUserAPIUpdate.as_view()),
+    path('api/v1/userdelete/<int:pk>/', CustomUserAPIDestroy.as_view())
 ]
